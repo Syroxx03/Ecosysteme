@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public abstract class Animal
 {
+    protected String aImage;
     protected ArrayList<String> aProperties;
     protected int aTimeBeforeRepro;
     protected int aTimeBeforeStarve;
@@ -11,4 +12,5 @@ public abstract class Animal
     {
         this.aProperties = new ArrayList<String>();
     }
+    public String getImage(){return this.aImage;}
 }
