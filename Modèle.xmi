@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_xNnuIHbdEe21DKtLdqIhMA" name="Modèle">
+  <eAnnotations xmi:id="_xNnuIXbdEe21DKtLdqIhMA" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_xNnuInbdEe21DKtLdqIhMA" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_xNnuI3bdEe21DKtLdqIhMA" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_xNnuJHbdEe21DKtLdqIhMA" name="User"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xNnuJXbdEe21DKtLdqIhMA" memberEnd="_xNnuJnbdEe21DKtLdqIhMA _xNnuKHbdEe21DKtLdqIhMA" navigableOwnedEnd="_xNnuJnbdEe21DKtLdqIhMA">
+    <ownedEnd xmi:id="_xNnuJnbdEe21DKtLdqIhMA" visibility="public" type="_xNnuOXbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuJXbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuJ3bdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_xNnuKHbdEe21DKtLdqIhMA" visibility="public" type="_xNnuJHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuJXbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuKXbdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xNnuKnbdEe21DKtLdqIhMA" memberEnd="_xNnuK3bdEe21DKtLdqIhMA _xNnuLXbdEe21DKtLdqIhMA" navigableOwnedEnd="_xNnuK3bdEe21DKtLdqIhMA">
+    <ownedEnd xmi:id="_xNnuK3bdEe21DKtLdqIhMA" visibility="public" type="_xNnuQXbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuKnbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuLHbdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_xNnuLXbdEe21DKtLdqIhMA" visibility="public" type="_xNnuJHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuKnbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuLnbdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xNnuL3bdEe21DKtLdqIhMA" memberEnd="_xNnuMHbdEe21DKtLdqIhMA _xNnuMnbdEe21DKtLdqIhMA" navigableOwnedEnd="_xNnuMHbdEe21DKtLdqIhMA">
+    <ownedEnd xmi:id="_xNnuMHbdEe21DKtLdqIhMA" visibility="public" type="_xNnuSHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuL3bdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuMXbdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_xNnuMnbdEe21DKtLdqIhMA" visibility="public" type="_xNnuJHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuL3bdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuM3bdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xNnuNHbdEe21DKtLdqIhMA" memberEnd="_xNnuNXbdEe21DKtLdqIhMA _xNnuN3bdEe21DKtLdqIhMA" navigableOwnedEnd="_xNnuNXbdEe21DKtLdqIhMA">
+    <ownedEnd xmi:id="_xNnuNXbdEe21DKtLdqIhMA" visibility="public" type="_xNnuWHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuNHbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuNnbdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_xNnuN3bdEe21DKtLdqIhMA" visibility="public" type="_xNnuJHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuNHbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuOHbdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_xNnuOXbdEe21DKtLdqIhMA" name="Configurer simulation">
+    <ownedComment xmi:id="_xNnuOnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuO3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuPHbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuPXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuPnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuP3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <extend xmi:id="_xNnuQHbdEe21DKtLdqIhMA" name="UseCaseDependency" extendedCase="_xNnuQXbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_xNnuQXbdEe21DKtLdqIhMA" name="Lancer la simulation">
+    <ownedComment xmi:id="_xNnuQnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuQ3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuRHbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuRXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuRnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuR3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_xNnuSHbdEe21DKtLdqIhMA" name="Pause simulation">
+    <ownedComment xmi:id="_xNnuSXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuSnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuS3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuTHbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuTXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuTnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <include xmi:id="_xNnuT3bdEe21DKtLdqIhMA" name="UseCaseDependency" addition="_xNnuQXbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_xNnuUHbdEe21DKtLdqIhMA" name="Sauvegarder simulation">
+    <ownedComment xmi:id="_xNnuUXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuUnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuU3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuVHbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuVXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuVnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <include xmi:id="_xNnuV3bdEe21DKtLdqIhMA" name="UseCaseDependency" addition="_xNnuSHbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_xNnuWHbdEe21DKtLdqIhMA" name="Charger simulation">
+    <ownedComment xmi:id="_xNnuWXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuWnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuW3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuXHbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuXXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuXnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnuX3bdEe21DKtLdqIhMA" name="UserInterface"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnuYHbdEe21DKtLdqIhMA" name="GameEngine">
+    <ownedAttribute xmi:id="_xNnuYXbdEe21DKtLdqIhMA" name="userInterface" visibility="public" type="_xNnuX3bdEe21DKtLdqIhMA" isUnique="false" aggregation="shared" association="_xNnuZXbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuYnbdEe21DKtLdqIhMA"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_xNnuY3bdEe21DKtLdqIhMA" name="universe" visibility="public" type="_xNnuanbdEe21DKtLdqIhMA" isUnique="false" aggregation="composite" association="_xNnuaHbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuZHbdEe21DKtLdqIhMA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xNnuZXbdEe21DKtLdqIhMA" memberEnd="_xNnuYXbdEe21DKtLdqIhMA _xNnuZnbdEe21DKtLdqIhMA">
+    <ownedEnd xmi:id="_xNnuZnbdEe21DKtLdqIhMA" visibility="public" type="_xNnuYHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuZXbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnuZ3bdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xNnuaHbdEe21DKtLdqIhMA" memberEnd="_xNnuY3bdEe21DKtLdqIhMA _xNnuaXbdEe21DKtLdqIhMA">
+    <ownedEnd xmi:id="_xNnuaXbdEe21DKtLdqIhMA" visibility="public" type="_xNnuYHbdEe21DKtLdqIhMA" isUnique="false" association="_xNnuaHbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnuanbdEe21DKtLdqIhMA" name="Universe">
+    <ownedAttribute xmi:id="_xNnua3bdEe21DKtLdqIhMA" name="animal" visibility="public" type="_xNnucHbdEe21DKtLdqIhMA" isUnique="false" aggregation="shared" association="_xNnubXbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnubHbdEe21DKtLdqIhMA"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xNnubXbdEe21DKtLdqIhMA" memberEnd="_xNnua3bdEe21DKtLdqIhMA _xNnubnbdEe21DKtLdqIhMA">
+    <ownedEnd xmi:id="_xNnubnbdEe21DKtLdqIhMA" visibility="public" type="_xNnuanbdEe21DKtLdqIhMA" isUnique="false" association="_xNnubXbdEe21DKtLdqIhMA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xNnub3bdEe21DKtLdqIhMA"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnucHbdEe21DKtLdqIhMA" name="Animal"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnucXbdEe21DKtLdqIhMA" name="Sheep">
+    <generalization xmi:id="_xNnucnbdEe21DKtLdqIhMA" general="_xNnucHbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnuc3bdEe21DKtLdqIhMA" name="Wolf">
+    <generalization xmi:id="_xNnudHbdEe21DKtLdqIhMA" general="_xNnucHbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnudXbdEe21DKtLdqIhMA" name="ConfigurationInterface"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnudnbdEe21DKtLdqIhMA" name="Simulation"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnud3bdEe21DKtLdqIhMA" name="Memento"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_xNnueHbdEe21DKtLdqIhMA" name="Analyser les résultats">
+    <ownedComment xmi:id="_xNnueXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnuenbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnue3bdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnufHbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnufXbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xNnufnbdEe21DKtLdqIhMA">
+      <body>...</body>
+    </ownedComment>
+    <include xmi:id="_xNnuf3bdEe21DKtLdqIhMA" name="UseCaseDependency" addition="_xNnuQXbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xNnugHbdEe21DKtLdqIhMA" name="Configuration"/>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_xNnugXbdEe21DKtLdqIhMA" name="State Machine">
+    <region xmi:id="_xNnugnbdEe21DKtLdqIhMA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_xNnug3bdEe21DKtLdqIhMA" name="Interaction">
+    <nestedClassifier xmi:type="uml:Collaboration" xmi:id="_xNnuhHbdEe21DKtLdqIhMA" name="locals"/>
+  </packagedElement>
+</uml:Model>
