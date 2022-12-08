@@ -1,18 +1,23 @@
 public class GameEngine
 {
-    private UserInterface aGUI;
     private Universe aUniverse;
-    public GameEngine(final UserInterface pGUI)
+    private UserInterface aGUI;
+    /*****************/
+    public GameEngine(Universe pUniverse)
     {
-        this.aGUI = pGUI;
-        this.aUniverse = new Universe(10, 15);
-        this.aGUI.addComponent(aUniverse);
-        this.test();
-        this.aGUI.setVisible(true);
-        this.aGUI.repaint();
+        this.aUniverse = pUniverse;
+        this.aGUI = new UserInterface(this.aUniverse);
     }
-    public void test()
+    /*****************/
+    public void startGameLoop()
     {
-        this.aUniverse.addAnimal(new Sheep(), 6, 6);
+        int vFPS = 30;
+        while(true)
+        {
+            this.aUniverse.update();
+            this.aGUI.repaint();
+            try{Thread.sleep(1000/30);}
+            catch(InterruptedException e){return;}
+        }
     }
 }

@@ -1,8 +1,10 @@
-public class Main {
-
+public class Main
+{
+    /*****************/
     public static void main(String[] args)
     {
-        UserInterface vGUI = new UserInterface();
-        GameEngine vGE = new GameEngine (vGUI);
+        Universe vUniverse = new Universe(10 ,10);
+        GameEngine vGE = new GameEngine ( vUniverse );
+        vGE.startGameLoop();
     }
 }
