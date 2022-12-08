@@ -28,7 +28,20 @@ public class Universe extends JComponent
     /*****************/
     public void update()
     {
-        this.aRound++;
+        this.moveAnimals();
+    }
+    /*****************/
+    public void moveAnimals()
+    {
+        for(int vRow = 0; vRow < this.aAnimals[0].length; vRow++)
+            for(int vClmn = 0; vClmn< this.aAnimals.length; vClmn++)
+            {
+                Animal vAnimal = this.aAnimals[vClmn][vRow];
+                if(vAnimal!=null)
+                {
+
+                }
+            }
     }
     /*****************/
     public void addAnimal(Animal pAnimal)
