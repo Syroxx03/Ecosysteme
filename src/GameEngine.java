@@ -16,7 +16,7 @@ public class GameEngine
         {
             this.aUniverse.update();
             this.aGUI.repaint();
-            try{Thread.sleep(1000/30);}
+            try{Thread.sleep(1000/vFPS);}
             catch(InterruptedException e){return;}
         }
     }
