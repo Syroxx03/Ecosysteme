@@ -11,7 +11,7 @@ public class GameEngine
     /*****************/
     public void startGameLoop()
     {
-        int vFPS = 30;
+        int vFPS = 10;
         while(true)
         {
             this.aUniverse.update();

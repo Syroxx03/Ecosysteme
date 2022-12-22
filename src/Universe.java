@@ -137,7 +137,11 @@ public class Universe extends JComponent
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn < aClmnNbr; vClmn++)
                 if(this.aMinerals[vClmn][vRow] && !this.aGrass[vClmn][vRow])
+                {
                     this.aGrass[vClmn][vRow] = true;
+                    this.aMinerals[vClmn][vRow] = false;
+                }
+
     }
     /*****************/
     ArrayList<Point> getNeighboringCells(final int pClmn, final int pRow)
@@ -184,7 +188,10 @@ public class Universe extends JComponent
                 else
                     g.setColor(new Color(79, 70, 64));
                 g.fillRect(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
-                g.setColor(Color.WHITE);
+                g.setColor(Color.BLUE);
+                if(this.aMinerals[vClmn][vRow])
+                    g.drawOval(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
+                g.setColor(Color.BLACK);
                 Animal vAnimal = this.aAnimals[vClmn][vRow];
                 if(vAnimal != null)
                     g.drawString( vAnimal.getImage(),vClmn*vCaseSize+15, vRow*vCaseSize+ 25);
