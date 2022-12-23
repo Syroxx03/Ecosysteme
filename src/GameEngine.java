@@ -1,23 +1,25 @@
 public class GameEngine
 {
-    private Universe aUniverse;
-    private UserInterface aGUI;
+    private final UserInterface aGUI;
     /*****************/
-    public GameEngine(Universe pUniverse)
+    public GameEngine()
     {
-        this.aUniverse = pUniverse;
-        this.aGUI = new UserInterface(this.aUniverse);
+        this.aGUI = new UserInterface();
     }
     /*****************/
-    public void startGameLoop()
+    public void startGameLoop(final Universe pUniverse)
     {
-        int vFPS = 10;
-        while(true)
+        this.aGUI.add(pUniverse);
+        this.aGUI.revalidate();
+        int vFPS = 30;
+        boolean vStop = false;
+        while(!vStop)
         {
-            this.aUniverse.update();
+            vStop = pUniverse.update();
             this.aGUI.repaint();
-            try{Thread.sleep(1000/vFPS);}
-            catch(InterruptedException e){return;}
+            //try{Thread.sleep(1000/vFPS);}
+            //catch(InterruptedException e){return;}
         }
+        this.aGUI.remove(pUniverse);
     }
 }

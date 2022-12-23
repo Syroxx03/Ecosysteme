@@ -17,33 +17,43 @@ public class Universe extends JComponent
         this.aRound = 0;
         this.aClmnNbr = pClmnNbr;
         this.aRowNbr = pRowNbr;
-
         this.aGrass = new boolean[aClmnNbr][aRowNbr];
-        for(int vRow = 0; vRow < aRowNbr; vRow++)
-            for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
-                this.aGrass[vClmn][vRow] = true;
-
         this.aMinerals = new boolean[aClmnNbr][aRowNbr];
+        this.aAnimals = new Animal[aClmnNbr][aRowNbr];
+
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
+            {
+                this.aGrass[vClmn][vRow] = true;
                 this.aMinerals[vClmn][vRow] = false;
-
-        this.aAnimals = new Animal[aClmnNbr][aRowNbr];
+            }
         for(int s = 0; s < pSheepNbr; s++)
             this.addAnimal(new Sheep());
         for(int w = 0; w < pWolfNbr; w++)
             this.addAnimal(new Wolf());
     }
     /*****************/
-    public void update()
+    public int getRound(){return this.aRound;}
+    /*****************/
+    public boolean update()
     {
         this.aRound++;
-        this.updateAnimals();
         this.moveAnimals();
         this.makeInteract();
+        this.updateAnimals();
         this.updateGrass();
         this.removeDead();
         this.addNews();
+        return this.isUniverseDead();
+    }
+    /*****************/
+    private boolean isUniverseDead()
+    {
+        for(int vRow = 0; vRow < aRowNbr; vRow++)
+            for(int vClmn = 0; vClmn < aClmnNbr; vClmn++)
+                if(this.aAnimals[vClmn][vRow] != null)
+                    return false;
+        return true;
     }
     /*****************/
     private void updateAnimals()
@@ -65,13 +75,11 @@ public class Universe extends JComponent
                 {
                     ArrayList<Point> vEmptyNeighboringCells = new ArrayList<Point>();
                     for(Point vPoint: this.getNeighboringCells(vClmn, vRow))
-                        if(this.aAnimals[vPoint.x][vPoint.y] == null)
+                        if(vAnimals[vPoint.x][vPoint.y] == null && this.aAnimals[vPoint.x][vPoint.y] == null)
                             vEmptyNeighboringCells.add(vPoint);
-                    if(!vEmptyNeighboringCells.isEmpty())
-                    {
-                        Point vPoint = vEmptyNeighboringCells.get((new Random()).nextInt(vEmptyNeighboringCells.size()));
-                        vAnimals[vPoint.x][vPoint.y] = vAnimal;
-                    }
+                    vEmptyNeighboringCells.add(new Point(vClmn,vRow));
+                    Point vPoint = vEmptyNeighboringCells.get((new Random()).nextInt(vEmptyNeighboringCells.size()));
+                    vAnimals[vPoint.x][vPoint.y] = vAnimal;
                 }
             }
         this.aAnimals = vAnimals;
@@ -179,7 +187,7 @@ public class Universe extends JComponent
     /*****************/
     @Override public void paintComponent(Graphics g)
     {
-        int vCaseSize = 30;
+        int vCaseSize = 50;
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
             {
@@ -194,7 +202,7 @@ public class Universe extends JComponent
                 g.setColor(Color.BLACK);
                 Animal vAnimal = this.aAnimals[vClmn][vRow];
                 if(vAnimal != null)
-                    g.drawString( vAnimal.getImage(),vClmn*vCaseSize+15, vRow*vCaseSize+ 25);
+                    g.drawString( vAnimal.getSpecies() + " "+  vAnimal.getGender(),vClmn*vCaseSize + 2, vRow*vCaseSize+ 30);
             }
     }
 }

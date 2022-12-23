@@ -1,50 +1,56 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public abstract class Animal
 {
-    protected String aImage;
-    protected HashMap<String, Integer> aValues;
+    protected String aSpecies;
+    protected String aGender;
+
+    protected int aTimeBeforeProcreate;
+    protected int aTimeBeforeStarving;
+    protected int aTimeBeforeDie;
+
     protected ArrayList<String> aProperties;
     /*****************/
     public Animal()
     {
-        this.aValues = new HashMap<>();
+        this.aSpecies = this.getClass().getName();
+        this.aGender = (new Random().nextBoolean() ? "male" : "female");
         this.aProperties = new ArrayList<String>();
-        String vGender = ((new Random()).nextInt(2)==0 ? "male" : "female");
-        this.aProperties.add(vGender);
     }
-    /*****************/
-    public int getValue(final String pKey){return this.aValues.get(pKey);}
-    /*****************/
-    public void setValue(final String pKey, final int pValue){this.aValues.put(pKey, pValue);}
-    /*****************/
-    public void removeProperty(final String pProperty){this.aProperties.remove(pProperty);}
-    /*****************/
-    public boolean hasProperty(final String pProperty) {return this.aProperties.contains(pProperty);}
-    /*****************/
-    public void addProperty(final String pProperty) {this.aProperties.add(pProperty);}
-    /*****************/
-    public String getImage(){return this.aImage;}
-    /*****************/
-    public abstract Animal giveBirth();
-    /*****************/
-    public abstract void interact(Animal pAnimal);
-    /*****************/
-    public abstract boolean grassInteract(final boolean pGrass);
     /*****************/
     public void update()
     {
-        int vTimeBD = this.aValues.get("timeBeforeDie");
-        int vTimeBS  = this.aValues.get("timeBeforeStarving");
-        int vTimeBP = this.aValues.get("timeBeforeProcreate");
-        if(vTimeBS == 0 || vTimeBD == 0)
+        this.aTimeBeforeDie--;
+        this.aTimeBeforeStarving--;
+        this.aTimeBeforeProcreate--;
+        if(this.aTimeBeforeStarving == 0 || this.aTimeBeforeDie == 0)
             this.addProperty("naturaldead");
-        this.aValues.put("timeBeforeDie",vTimeBS - 1);
-        this.aValues.put("timeBeforeStarving",vTimeBS - 1);
-        this.aValues.put("timeBeforeProcreate",vTimeBP - 1);
     }
+    /*****************/
+    public boolean canReproduceWith(final Animal pAnimal)
+    {
+        return (this.aGender.equals("male") && pAnimal.getGender().equals("female")
+            && this.aSpecies.equals(pAnimal.getSpecies())
+            && this.getTBProcreate() <= 0 && pAnimal.getTBProcreate() <= 0);
+    }
+    /*****************/
+    public void setTimeBeforeProcreate(final int pTime){this.aTimeBeforeProcreate = pTime;}
+    /*****************/
+    public String getGender(){return this.aGender;}
+    public String getSpecies(){return this.aSpecies;}
+    public int getTBProcreate(){return this.aTimeBeforeProcreate;}
+    /*****************/
+    public boolean hasProperty(final String pProperty) {return this.aProperties.contains(pProperty);}
+    public void removeProperty(final String pProperty){this.aProperties.remove(pProperty);}
+    public void addProperty(final String pProperty) {this.aProperties.add(pProperty);}
+    /*****************/
+    public abstract Animal giveBirth();
+    public abstract void interact(Animal pAnimal);
+    public abstract boolean grassInteract(final boolean pGrass);
+    public abstract void move();
+
+
 
 
 }

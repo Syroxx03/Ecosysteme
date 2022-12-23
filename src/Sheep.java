@@ -1,33 +1,39 @@
 public class Sheep extends Animal
 {
+    public static int LifeTime = 50;
+    public static int ProcreationInterval = 6;
+    public static int MeatMaxInterval = 6;
+
     /*****************/
     public Sheep()
     {
         super();
-        this.aImage = "S";
-        this.addProperty("sheep");
-        this.aValues.put("timeBeforeStarving",5);
-        this.aValues.put("timeBeforeDie",50);
-        this.aValues.put("timeBeforeProcreate",6);
+        this.aTimeBeforeDie = LifeTime;
+        this.aTimeBeforeStarving = MeatMaxInterval;
+        this.aTimeBeforeProcreate = 0;
     }
     /*****************/
-    public Animal giveBirth(){return new Sheep();}
+    @Override public Animal giveBirth(){return new Sheep();}
     /*****************/
-    public void interact(Animal pAnimal)
+    @Override public void interact(Animal pAnimal)
     {
-        if(pAnimal.hasProperty("sheep") && this.hasProperty("male") && pAnimal.hasProperty("female"))
-            if(this.getValue("timeBeforeProcreate") <= 0 && pAnimal.getValue("timeBeforeProcreate") <= 0)
-            {
-                this.setValue("timeBeforeProcreate",6);
-                pAnimal.setValue("timeBeforeProcreate",6);
-                pAnimal.addProperty("pregnant");
-            }
+        if(this.canReproduceWith(pAnimal))
+        {
+            this.aTimeBeforeProcreate = ProcreationInterval;
+            pAnimal.setTimeBeforeProcreate(ProcreationInterval);
+            pAnimal.addProperty("pregnant");
+        }
     }
     /*****************/
-    public boolean grassInteract(final boolean pGrass)
+    @Override public boolean grassInteract(final boolean pGrass)
     {
         if(pGrass)
-            this.setValue("timeBeforeStarving",5);
+            this.aTimeBeforeStarving = MeatMaxInterval;
         return false;
+    }
+    /*****************/
+    @Override public void move()
+    {
+
     }
 }

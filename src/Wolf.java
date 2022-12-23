@@ -1,34 +1,38 @@
 public class Wolf extends Animal
 {
+    public static int LifeTime = 60;
+    public static int ProcreationInterval = 6;
+    public static int MeatMaxInterval = 10;
     /*****************/
     public Wolf()
     {
         super();
-        this.aImage = "W";
-        this.addProperty("wolf");
-        this.aValues.put("timeBeforeStarving",10);
-        this.aValues.put("timeBeforeDie",60);
-        this.aValues.put("timeBeforeProcreate",6);
+        this.aTimeBeforeDie = LifeTime;
+        this.aTimeBeforeStarving = MeatMaxInterval;
+        this.aTimeBeforeProcreate = 0;
     }
     /*****************/
     public Animal giveBirth(){return new Wolf();}
-
     /*****************/
     public void interact(Animal pAnimal)
     {
-        if(pAnimal.hasProperty("prey"))
+        if(pAnimal.getSpecies().equals("Sheep"))
         {
             pAnimal.addProperty("dead");
-            this.setValue("timeBeforeStarving",10);
+            this.aTimeBeforeStarving =  MeatMaxInterval;
         }
-        if(pAnimal.hasProperty("wolf") && this.hasProperty("male") && pAnimal.hasProperty("female"))
-            if(this.getValue("timeBeforeProcreate") <= 0 && pAnimal.getValue("timeBeforeProcreate") <= 0)
-            {
-                this.setValue("timeBeforeProcreate",6);
-                pAnimal.setValue("timeBeforeProcreate",6);
-                pAnimal.addProperty("pregnant");
-            }
+        else if(this.canReproduceWith(pAnimal))
+        {
+            this.aTimeBeforeProcreate = ProcreationInterval;
+            pAnimal.setTimeBeforeProcreate(ProcreationInterval);
+            pAnimal.addProperty("pregnant");
+        }
     }
     /*****************/
     public boolean grassInteract(final boolean pGrass){return pGrass;}
+    /*****************/
+    public void move()
+    {
+
+    }
 }
