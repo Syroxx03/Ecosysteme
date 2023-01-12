@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Universe extends JComponent
@@ -11,6 +12,8 @@ public class Universe extends JComponent
     private Animal[][] aAnimals;
     final private boolean[][] aMinerals;
     final private boolean[][] aGrass;
+
+    private HashMap<Integer, UniverseStatistics> aUniverseStatistics;
     /*****************/
     public Universe(int pClmnNbr, int pRowNbr, int pSheepNbr, int pWolfNbr)
     {
@@ -20,6 +23,8 @@ public class Universe extends JComponent
         this.aGrass = new boolean[aClmnNbr][aRowNbr];
         this.aMinerals = new boolean[aClmnNbr][aRowNbr];
         this.aAnimals = new Animal[aClmnNbr][aRowNbr];
+        this.aUniverseStatistics = new HashMap<Integer,UniverseStatistics>();
+
 
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
@@ -31,6 +36,8 @@ public class Universe extends JComponent
             this.addAnimal(new Sheep());
         for(int w = 0; w < pWolfNbr; w++)
             this.addAnimal(new Wolf());
+
+        this.saveRoundStatisics();
     }
     /*****************/
     public int getRound(){return this.aRound;}
@@ -44,6 +51,7 @@ public class Universe extends JComponent
         this.updateGrass();
         this.removeDead();
         this.addNews();
+        this.saveRoundStatisics();
         return this.isUniverseDead();
     }
     /*****************/
@@ -184,6 +192,43 @@ public class Universe extends JComponent
             this.aAnimals[vPoint.x][vPoint.y] = pAnimal;
         }
     }
+
+    /*****************/
+
+    public int getSheepNbr(){
+
+        int vSheepNbr = 0;
+        for(int vRow = 0; vRow < aRowNbr; vRow++)
+            for(int vClmn = 0; vClmn < aClmnNbr; vClmn++)
+            {
+                Animal vAnimal = this.aAnimals[vClmn][vRow];
+                if(vAnimal != null && vAnimal.getSpecies().equals("Sheep")) vSheepNbr += 1;
+
+            }
+        return vSheepNbr;
+    }
+    /*****************/
+
+    public int getWolvesNbr(){
+
+        int vWolvesNbr = 0;
+        for(int vRow = 0; vRow < aRowNbr; vRow++)
+            for(int vClmn = 0; vClmn < aClmnNbr; vClmn++)
+            {
+                Animal vAnimal = this.aAnimals[vClmn][vRow];
+                if(vAnimal != null && vAnimal.getSpecies().equals("Wolf")) vWolvesNbr += 1;
+
+            }
+        return vWolvesNbr;
+    }
+    /*****************/
+
+    public void saveRoundStatisics(){
+        this.aUniverseStatistics.put(this.aRound, new UniverseStatistics(getSheepNbr(), getWolvesNbr()));
+    }
+
+
+
     /*****************/
     @Override public void paintComponent(Graphics g)
     {
@@ -225,5 +270,9 @@ public class Universe extends JComponent
                 }
 
             }
+    }
+
+    public HashMap<Integer, UniverseStatistics> getUniverseStatistics() {
+        return aUniverseStatistics;
     }
 }

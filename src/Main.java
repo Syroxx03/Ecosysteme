@@ -8,7 +8,7 @@ public class Main
         int vRowNbr = 10;
         int vSheepNbr = 6;
         int vWolfNbr = 2;
-        int vTestNbr = 100;
+        int vTestNbr = 1;
 
 
         int vTotalRound = 0;
