@@ -12,9 +12,9 @@ public class Wolf extends Animal
         this.aTimeBeforeProcreate = 0;
     }
     /*****************/
-    public Animal giveBirth(){return new Wolf();}
+    @Override public Animal giveBirth(){return new Wolf();}
     /*****************/
-    public void interact(Animal pAnimal)
+    @Override public void interact(Animal pAnimal)
     {
         if(pAnimal.getSpecies().equals("Sheep"))
         {
@@ -29,9 +29,9 @@ public class Wolf extends Animal
         }
     }
     /*****************/
-    public boolean grassInteract(final boolean pGrass){return pGrass;}
+    @Override public boolean grassInteract(final boolean pGrass){return pGrass;}
     /*****************/
-    public void move()
+    @Override public void move()
     {
 
     }

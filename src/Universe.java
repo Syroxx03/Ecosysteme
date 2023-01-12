@@ -194,15 +194,36 @@ public class Universe extends JComponent
                 if(this.aGrass[vClmn][vRow])
                     g.setColor(new Color(116, 193, 127));
                 else
-                    g.setColor(new Color(79, 70, 64));
+                    g.setColor(new Color(109, 100, 94));
                 g.fillRect(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
                 g.setColor(Color.BLUE);
                 if(this.aMinerals[vClmn][vRow])
                     g.drawOval(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
-                g.setColor(Color.BLACK);
+
                 Animal vAnimal = this.aAnimals[vClmn][vRow];
                 if(vAnimal != null)
-                    g.drawString( vAnimal.getSpecies() + " "+  vAnimal.getGender(),vClmn*vCaseSize + 2, vRow*vCaseSize+ 30);
+                {
+                    // g.setColor(Color.BLACK);
+                    // g.drawString( vAnimal.getSpecies() + " "+  vAnimal.getGender(),vClmn*vCaseSize + 2, vRow*vCaseSize+ 30);
+                    switch (vAnimal.getSpecies()) {
+                        case "Wolf" -> g.setColor(Color.BLACK);
+                        case "Sheep" -> g.setColor(Color.WHITE);
+                        default -> g.setColor(Color.red);
+                    }
+                    g.fillOval(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
+                    if(vAnimal.getGender().equals("female"))
+                    {
+                        g.setColor(Color.PINK);
+                        g.fillOval(vClmn*vCaseSize +vCaseSize/4 , vRow*vCaseSize+vCaseSize/4, vCaseSize/2-1, vCaseSize/2-1);
+                    }
+                    if(vAnimal.getTBProcreate()<=0)
+                    {
+                        g.setColor(Color.red);
+                        g.drawOval(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
+                    }
+
+                }
+
             }
     }
 }

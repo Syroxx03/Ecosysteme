@@ -11,14 +11,14 @@ public class GameEngine
     {
         this.aGUI.add(pUniverse);
         this.aGUI.revalidate();
-        int vFPS = 30;
+        int vFPS = 1000;
         boolean vStop = false;
         while(!vStop)
         {
             vStop = pUniverse.update();
             this.aGUI.repaint();
-            //try{Thread.sleep(1000/vFPS);}
-            //catch(InterruptedException e){return;}
+            try{Thread.sleep(1000/vFPS);}
+            catch(InterruptedException e){return;}
         }
         this.aGUI.remove(pUniverse);
     }
