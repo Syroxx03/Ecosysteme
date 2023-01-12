@@ -223,7 +223,6 @@ public class Universe extends JComponent
                     }
 
                 }
-
             }
     }
 }

@@ -31,9 +31,4 @@ public class Sheep extends Animal
             this.aTimeBeforeStarving = MeatMaxInterval;
         return false;
     }
-    /*****************/
-    @Override public void move()
-    {
-
-    }
 }

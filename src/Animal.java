@@ -48,9 +48,4 @@ public abstract class Animal
     public abstract Animal giveBirth();
     public abstract void interact(Animal pAnimal);
     public abstract boolean grassInteract(final boolean pGrass);
-    public abstract void move();
-
-
-
-
 }

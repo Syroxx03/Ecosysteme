@@ -30,9 +30,4 @@ public class Wolf extends Animal
     }
     /*****************/
     @Override public boolean grassInteract(final boolean pGrass){return pGrass;}
-    /*****************/
-    @Override public void move()
-    {
-
-    }
 }
