@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Universe extends JComponent
 {
+    private int aCaseSize;
     private int aRound;
     private final int aClmnNbr;
     private final int aRowNbr;
@@ -14,13 +15,14 @@ public class Universe extends JComponent
     /*****************/
     public Universe(int pClmnNbr, int pRowNbr, int pSheepNbr, int pWolfNbr)
     {
+        this.aCaseSize = 32;
         this.aRound = 0;
         this.aClmnNbr = pClmnNbr;
         this.aRowNbr = pRowNbr;
         this.aGrass = new boolean[aClmnNbr][aRowNbr];
         this.aMinerals = new boolean[aClmnNbr][aRowNbr];
         this.aAnimals = new Animal[aClmnNbr][aRowNbr];
-
+        this.setPreferredSize(new Dimension(aCaseSize*aClmnNbr,aCaseSize*aRowNbr));
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
             {
@@ -187,7 +189,6 @@ public class Universe extends JComponent
     /*****************/
     @Override public void paintComponent(Graphics g)
     {
-        int vCaseSize = 50;
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
             {
@@ -195,31 +196,29 @@ public class Universe extends JComponent
                     g.setColor(new Color(116, 193, 127));
                 else
                     g.setColor(new Color(109, 100, 94));
-                g.fillRect(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
+                g.fillRect(vClmn*aCaseSize, vRow*aCaseSize, aCaseSize-1, aCaseSize-1);
                 g.setColor(Color.BLUE);
                 if(this.aMinerals[vClmn][vRow])
-                    g.drawOval(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
+                    g.drawOval(vClmn*aCaseSize, vRow*aCaseSize, aCaseSize-1, aCaseSize-1);
 
                 Animal vAnimal = this.aAnimals[vClmn][vRow];
                 if(vAnimal != null)
                 {
-                    // g.setColor(Color.BLACK);
-                    // g.drawString( vAnimal.getSpecies() + " "+  vAnimal.getGender(),vClmn*vCaseSize + 2, vRow*vCaseSize+ 30);
                     switch (vAnimal.getSpecies()) {
                         case "Wolf" -> g.setColor(Color.BLACK);
                         case "Sheep" -> g.setColor(Color.WHITE);
                         default -> g.setColor(Color.red);
                     }
-                    g.fillOval(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
+                    g.fillOval(vClmn*aCaseSize, vRow * aCaseSize, aCaseSize-1, aCaseSize-1);
                     if(vAnimal.getGender().equals("female"))
                     {
                         g.setColor(Color.PINK);
-                        g.fillOval(vClmn*vCaseSize +vCaseSize/4 , vRow*vCaseSize+vCaseSize/4, vCaseSize/2-1, vCaseSize/2-1);
+                        g.fillOval(vClmn*aCaseSize + aCaseSize/4 , vRow*aCaseSize+aCaseSize/4, aCaseSize/2-1, aCaseSize/2-1);
                     }
                     if(vAnimal.getTBProcreate()<=0)
                     {
                         g.setColor(Color.red);
-                        g.drawOval(vClmn*vCaseSize, vRow*vCaseSize, vCaseSize-1, vCaseSize-1);
+                        g.drawOval(vClmn*aCaseSize, vRow*aCaseSize, aCaseSize-1, aCaseSize-1);
                     }
 
                 }
