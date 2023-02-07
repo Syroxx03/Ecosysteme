@@ -3,26 +3,23 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Universe extends JComponent
+public class Universe
 {
-    private int aCaseSize;
     private int aRound;
-    private final int aClmnNbr;
-    private final int aRowNbr;
+    private final int aClmnNbr, aRowNbr;
     private Animal[][] aAnimals;
     final private boolean[][] aMinerals;
     final private boolean[][] aGrass;
     /*****************/
     public Universe(int pClmnNbr, int pRowNbr, int pSheepNbr, int pWolfNbr)
     {
-        this.aCaseSize = 32;
+
         this.aRound = 0;
         this.aClmnNbr = pClmnNbr;
         this.aRowNbr = pRowNbr;
         this.aGrass = new boolean[aClmnNbr][aRowNbr];
         this.aMinerals = new boolean[aClmnNbr][aRowNbr];
         this.aAnimals = new Animal[aClmnNbr][aRowNbr];
-        this.setPreferredSize(new Dimension(aCaseSize*aClmnNbr,aCaseSize*aRowNbr));
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
             {
@@ -36,8 +33,13 @@ public class Universe extends JComponent
     }
     /*****************/
     public int getRound(){return this.aRound;}
+    public int getClmnNbr(){return this.aClmnNbr;}
+    public int getRowNbr(){return this.aRowNbr;}
+    public boolean hasGrass(int pClmn, int pRow){return this.aGrass[pClmn][pRow];}
+    public boolean hasMinerals(int pClmn, int pRow){return this.aMinerals[pClmn][pRow];}
+    public Animal getAnimal(int pClmn, int pRow){return this.aAnimals[pClmn][pRow];}
     /*****************/
-    public boolean update()
+    public boolean nextRound()
     {
         this.aRound++;
         this.moveAnimals();
@@ -151,7 +153,6 @@ public class Universe extends JComponent
                     this.aGrass[vClmn][vRow] = true;
                     this.aMinerals[vClmn][vRow] = false;
                 }
-
     }
     /*****************/
     ArrayList<Point> getNeighboringCells(final int pClmn, final int pRow)
@@ -185,43 +186,5 @@ public class Universe extends JComponent
             Point vPoint = vEmptyCells.get((new Random()).nextInt(vEmptyCells.size()));
             this.aAnimals[vPoint.x][vPoint.y] = pAnimal;
         }
-    }
-    /*****************/
-    @Override public void paintComponent(Graphics g)
-    {
-        for(int vRow = 0; vRow < aRowNbr; vRow++)
-            for(int vClmn = 0; vClmn< aClmnNbr; vClmn++)
-            {
-                if(this.aGrass[vClmn][vRow])
-                    g.setColor(new Color(116, 193, 127));
-                else
-                    g.setColor(new Color(109, 100, 94));
-                g.fillRect(vClmn*aCaseSize, vRow*aCaseSize, aCaseSize-1, aCaseSize-1);
-                g.setColor(Color.BLUE);
-                if(this.aMinerals[vClmn][vRow])
-                    g.drawOval(vClmn*aCaseSize, vRow*aCaseSize, aCaseSize-1, aCaseSize-1);
-
-                Animal vAnimal = this.aAnimals[vClmn][vRow];
-                if(vAnimal != null)
-                {
-                    switch (vAnimal.getSpecies()) {
-                        case "Wolf" -> g.setColor(Color.BLACK);
-                        case "Sheep" -> g.setColor(Color.WHITE);
-                        default -> g.setColor(Color.red);
-                    }
-                    g.fillOval(vClmn*aCaseSize, vRow * aCaseSize, aCaseSize-1, aCaseSize-1);
-                    if(vAnimal.getGender().equals("female"))
-                    {
-                        g.setColor(Color.PINK);
-                        g.fillOval(vClmn*aCaseSize + aCaseSize/4 , vRow*aCaseSize+aCaseSize/4, aCaseSize/2-1, aCaseSize/2-1);
-                    }
-                    if(vAnimal.getTBProcreate()<=0)
-                    {
-                        g.setColor(Color.red);
-                        g.drawOval(vClmn*aCaseSize, vRow*aCaseSize, aCaseSize-1, aCaseSize-1);
-                    }
-
-                }
-            }
     }
 }

@@ -5,14 +5,14 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class GameEngine
 {
     private final JFrame aFrame;
-    private ConfigurationInterface aCI;
+    private UserInterface aUI;
     /*****************/
     public GameEngine()
     {
         this.aFrame = new JFrame();
         this.setFrame();
-        this.aCI = new ConfigurationInterface(this);
-        this.aFrame.add(this.aCI);
+        this.aUI = new UserInterface();
+        this.aFrame.add(this.aUI);
         this.aFrame.revalidate();
     }
     /*****************/
@@ -24,15 +24,29 @@ public class GameEngine
         this.aFrame.setVisible(true);
     }
     /*****/
-    public void startGameLoop(final Universe pUniverse, final int pFPS)
+    public void startGameLoop()
     {
-        boolean vStop = false;
-        while(!vStop)
+        Thread repaintThread = new Thread(() ->
         {
-            vStop = pUniverse.update();
-            this.aFrame.repaint();
-            try{Thread.sleep(1000/pFPS);}
-            catch(InterruptedException e){return;}
-        }
+           while(true)
+           {
+               this.aUI.repaint();
+               try{Thread.sleep(1000/60);}
+               catch(InterruptedException e){return;}
+           }
+        });
+
+        Thread updateThread = new Thread(() ->
+        {
+            while(true)
+            {
+                if(this.aUI.auto())
+                    this.aUI.nextRound();
+                try{Thread.sleep(Math.min(this.aUI.getInterval(),1000));}
+                catch(InterruptedException e){return;}
+            }
+        });
+        repaintThread.start();
+        updateThread.start();
     }
 }
