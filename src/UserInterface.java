@@ -55,7 +55,7 @@ public class UserInterface extends JPanel implements ActionListener
     private void setGameMap()
     {
         this.aGameMap.put("Tour suivant",this.createJButton("Tour suivant"));
-        this.aGameMap.put("Auto",this.createJButton("Auto"));
+        this.aGameMap.put("Auto ",this.createJButton("Auto "));
         this.aGameMap.put("Reset",this.createJButton("Reset"));
         this.aGameMap.put("IntervalAuto",this.createJTextField("Interval auto",100));
     }
@@ -94,7 +94,7 @@ public class UserInterface extends JPanel implements ActionListener
                     vB.setText("Modifier les paramètres");
                 }break;
             case "Modifier les paramètres":
-                ((JButton)this.aGameMap.get("Auto")).setText("Auto");
+                ((JButton)this.aGameMap.get("Auto ")).setText("Auto ");
                 this.aAuto = false;
                 this.aUniCanvas.setUni(null);
                 this.configMode();
@@ -103,15 +103,16 @@ public class UserInterface extends JPanel implements ActionListener
                 if(this.aUniCanvas!=null)
                     this.aUniCanvas.getUni().nextRound();
                 break;
-            case "Auto":
+            case "Auto ":
                 this.aAuto = true;
-                vB.setText("Stop");
+                vB.setText("Stop ");
                 this.aGameMap.get("Tour suivant").setEnabled(false);
                 this.aGameMap.get("IntervalAuto").setEnabled(false);
                 break;
-            case "Stop":
+            case "Stop ":
                 this.aAuto = false;
-                vB.setText("Auto");
+                vB.setText("Auto ");
+                this.aGameMap.get("Tour suivant").setEnabled(true);
                 this.aGameMap.get("IntervalAuto").setEnabled(true);break;
             case "Reset":this.createUniverse();break;
         }

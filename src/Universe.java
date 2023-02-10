@@ -6,6 +6,7 @@ import java.util.Random;
 public class Universe
 {
     private int aRound;
+    private boolean aIsDead;
     private final int aClmnNbr, aRowNbr;
     private Animal[][] aAnimals;
     final private boolean[][] aMinerals;
@@ -13,8 +14,8 @@ public class Universe
     /*****************/
     public Universe(int pClmnNbr, int pRowNbr, int pSheepNbr, int pWolfNbr)
     {
-
         this.aRound = 0;
+        this.aIsDead = false;
         this.aClmnNbr = pClmnNbr;
         this.aRowNbr = pRowNbr;
         this.aGrass = new boolean[aClmnNbr][aRowNbr];
@@ -32,6 +33,7 @@ public class Universe
             this.addAnimal(new Wolf());
     }
     /*****************/
+    public boolean isDead(){return this.aIsDead;}
     public int getRound(){return this.aRound;}
     public int getClmnNbr(){return this.aClmnNbr;}
     public int getRowNbr(){return this.aRowNbr;}
@@ -39,25 +41,28 @@ public class Universe
     public boolean hasMinerals(int pClmn, int pRow){return this.aMinerals[pClmn][pRow];}
     public Animal getAnimal(int pClmn, int pRow){return this.aAnimals[pClmn][pRow];}
     /*****************/
-    public boolean nextRound()
+    public void nextRound()
     {
-        this.aRound++;
-        this.moveAnimals();
-        this.makeInteract();
-        this.updateAnimals();
-        this.updateGrass();
-        this.removeDead();
-        this.addNews();
-        return this.isUniverseDead();
+        if(!this.aIsDead)
+        {
+            this.aRound++;
+            this.moveAnimals();
+            this.makeInteract();
+            this.updateAnimals();
+            this.updateGrass();
+            this.removeDead();
+            this.addNews();
+            testUniverseDead();
+        }
     }
     /*****************/
-    private boolean isUniverseDead()
+    private void testUniverseDead()
     {
         for(int vRow = 0; vRow < aRowNbr; vRow++)
             for(int vClmn = 0; vClmn < aClmnNbr; vClmn++)
                 if(this.aAnimals[vClmn][vRow] != null)
-                    return false;
-        return true;
+                    return;
+        this.aIsDead = true;
     }
     /*****************/
     private void updateAnimals()
