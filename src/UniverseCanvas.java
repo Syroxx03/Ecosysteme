@@ -1,69 +1,90 @@
-import javax.swing.*;
-import java.awt.*;
-
+import javax.swing.JComponent;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.Font;
+/*****************/
 public class UniverseCanvas  extends JComponent
 {
     private Universe aUni;
     private int aCaseSize;
+    private final Point aO;
     /*****************/
     public UniverseCanvas()
     {
         this.aCaseSize = 32;
+        this.aO = new Point();
         this.setPreferredSize(new Dimension(500,500));
+        this.setFont(new Font("Serif",Font.BOLD,40));
     }
-    public void setUni(Universe pUni)
+    /*****************/
+    public Universe getUniverse(){return this.aUni;}
+    public void setUniverse(Universe pUni)
     {
         this.aUni = pUni;
         if(this.aUni != null)
-            this.aCaseSize = Math.min(this.getWidth()/this.aUni.getClmnNbr(),this.getHeight()/this.aUni.getRowNbr());
-    }
-    public Universe getUni(){return this.aUni;}
-    /*****************/
-    @Override public void paintComponent(Graphics g)
-    {
-        g.setColor(Color.BLACK);
-        g.fillRect(0,0,this.getWidth()-1,this.getHeight()-1);
-        if(this.aUni==null)return;
-        if(this.aUni.isDead())
         {
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Serif",Font.BOLD,40));
-            int stringWidth = g.getFontMetrics().stringWidth("Univers mort au tour "+this.aUni.getRound());
-            g.drawString("Univers mort au tour "+this.aUni.getRound(), this.getWidth()/2 - stringWidth/2, this.getHeight()/2);
-            return;
+            Params vP = this.aUni.getParams();
+            int vCaseWidth = this.getWidth()/vP.clmn;
+            int vCaseHeight = this.getHeight()/vP.row;
+            this.aCaseSize = Math.min( vCaseWidth,vCaseHeight);
+            this.aO.x = (this.getWidth() - this.aCaseSize * vP.clmn)/2;
+            this.aO.y = (this.getHeight() - this.aCaseSize * vP.row)/2;
         }
-        for(int vRow = 0; vRow < this.aUni.getRowNbr(); vRow++)
-            for(int vClmn = 0; vClmn < this.aUni.getClmnNbr(); vClmn++)
+    }
+    /*****************/
+    @Override public void paintComponent(Graphics g) {
+        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+        if (this.aUni != null)
+        {
+            this.drawGround(g);
+            this.drawMinerals(g);
+            this.drawAnimals(g);
+            if (this.aUni.isDead())
+                this.drawDeadRound(g);
+        }
+    }
+    /*****************/
+    private void drawDeadRound(Graphics g)
+    {
+        String vText = "Univers mort au tour "+this.aUni.getRound();
+        int stringWidth = g.getFontMetrics().stringWidth(vText);
+        g.setColor(Color.WHITE);
+        g.drawString(vText, this.getWidth()/2 - stringWidth/2, this.getHeight()/2);
+    }
+    /*****************/
+    private void drawGround(Graphics g)
+    {
+        Color vBrown = new Color(109, 100, 94);
+        Color vGreen = new Color(116, 193, 127);
+        for(int vRow = 0; vRow < this.aUni.getParams().row; vRow++)
+            for (int vClmn = 0; vClmn < this.aUni.getParams().clmn; vClmn++)
             {
-                int vX = vClmn*aCaseSize + (this.getWidth() - this.aUni.getRowNbr()*this.aCaseSize)/2;
-                int vY = vRow*aCaseSize + (this.getHeight() - this.aUni.getClmnNbr()*this.aCaseSize)/2;
-                if(this.aUni.hasGrass(vClmn,vRow))
-                    g.setColor(new Color(116, 193, 127));
-                else
-                    g.setColor(new Color(109, 100, 94));
-                g.fillRect(vX , vY , aCaseSize-1, aCaseSize-1);
-                g.setColor(Color.BLUE);
+                g.setColor(this.aUni.hasGrass(vClmn,vRow)?vGreen:vBrown);
+                g.fillRect(aO.x + vClmn * aCaseSize, aO.y +vRow * aCaseSize , aCaseSize-1, aCaseSize-1);
+            }
+    }
+    /*****************/
+    private void drawMinerals(Graphics g)
+    {
+        g.setColor(Color.BLUE);
+        for(int vRow = 0; vRow < this.aUni.getParams().row; vRow++)
+            for (int vClmn = 0; vClmn < this.aUni.getParams().clmn; vClmn++)
                 if(this.aUni.hasMinerals(vClmn,vRow))
-                    g.drawOval(vX , vY ,aCaseSize-1, aCaseSize-1);
+                    g.drawOval(aO.x + vClmn * aCaseSize, aO.y +vRow * aCaseSize , aCaseSize-1, aCaseSize-1);
+    }
+    /*****************/
+    private void drawAnimals(Graphics g)
+    {
+        for(int vRow = 0; vRow < this.aUni.getParams().row; vRow++)
+            for (int vClmn = 0; vClmn < this.aUni.getParams().clmn; vClmn++)
+            {
                 Animal vAnimal = this.aUni.getAnimal(vClmn,vRow);
                 if(vAnimal != null)
                 {
-                    switch (vAnimal.getSpecies()) {
-                        case "Wolf" -> g.setColor(Color.BLACK);
-                        case "Sheep" -> g.setColor(Color.WHITE);
-                        default -> g.setColor(Color.red);
-                    }
-                    g.fillOval(vX, vY , aCaseSize-1, aCaseSize-1);
-                    if(vAnimal.getGender().equals("female"))
-                    {
-                        g.setColor(Color.PINK);
-                        g.fillOval(vX + aCaseSize/4  , vY +aCaseSize/4, aCaseSize/2-1, aCaseSize/2-1);
-                    }
-                    if(vAnimal.getTBProcreate()<=0)
-                    {
-                        g.setColor(Color.red);
-                        g.drawOval(vX , vY , aCaseSize-1, aCaseSize-1);
-                    }
+                    g.setColor(vAnimal.getSpecies().equals("Wolf")?Color.BLACK:Color.WHITE);
+                    g.fillOval(aO.x + vClmn * aCaseSize, aO.y + vRow * aCaseSize , aCaseSize-1, aCaseSize-1);
                 }
             }
     }

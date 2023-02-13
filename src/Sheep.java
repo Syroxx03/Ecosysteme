@@ -1,3 +1,4 @@
+/*****************/
 public class Sheep extends Animal
 {
     public static int LifeTime = 50;

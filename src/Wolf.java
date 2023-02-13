@@ -1,3 +1,4 @@
+/*****************/
 public class Wolf extends Animal
 {
     public static int LifeTime = 60;

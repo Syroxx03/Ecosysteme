@@ -1,43 +1,34 @@
-import javax.swing.*;
-import java.awt.*;
-
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+/*****************/
 public class GameEngine
 {
-    private final JFrame aFrame;
-    private UserInterface aUI;
+    private final UserInterface aUI;
     /*****************/
     public GameEngine()
     {
-        this.aFrame = new JFrame();
-        this.setFrame();
         this.aUI = new UserInterface();
-        this.aFrame.add(this.aUI);
-        this.aFrame.revalidate();
     }
     /*****************/
-    private void setFrame()
-    {
-        this.aFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.aFrame.setBackground(Color.BLACK);
-        this.aFrame.setBounds(100, 100, 1000, 700);
-        this.aFrame.setVisible(true);
-    }
-    /*****/
     public void startGameLoop()
     {
-        Thread repaintThread = new Thread(() ->
-        {
-           while(true)
-           {
-               this.aUI.repaint();
-               try{Thread.sleep(1000/60);}
-               catch(InterruptedException e){return;}
-           }
-        });
-
-        Thread updateThread = new Thread(() ->
-        {
+        this.startRepaintThread();
+        this.startUpdateThread();
+    }
+    /*****************/
+    private void startRepaintThread()
+    {
+        (new Thread(() -> {
+            while(true)
+            {
+                this.aUI.repaint();
+                try{Thread.sleep(1000/60);}
+                catch(InterruptedException e){return;}
+            }
+        })).start();
+    }
+    /*****************/
+    private void startUpdateThread()
+    {
+        (new Thread(() -> {
             while(true)
             {
                 if(this.aUI.auto())
@@ -45,8 +36,6 @@ public class GameEngine
                 try{Thread.sleep(Math.min(this.aUI.getInterval(),1000));}
                 catch(InterruptedException e){return;}
             }
-        });
-        repaintThread.start();
-        updateThread.start();
+        })).start();
     }
 }
