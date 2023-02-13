@@ -1,8 +1,15 @@
-import javax.swing.*;
 import javax.swing.border.CompoundBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionListener;
+import javax.swing.WindowConstants;
+import java.awt.event.ActionEvent;
+import javax.swing.BorderFactory;
+import javax.swing.JTextField;
+import javax.swing.JComponent;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.util.HashMap;
 import java.awt.Color;
 /*****************/
@@ -45,7 +52,7 @@ public class UserInterface extends JFrame implements ActionListener
         this.aConfigMap.put("Row", this.createJTextField("Nombre de lignes ", 10));
         this.aConfigMap.put("Sheep", this.createJTextField("Nombre de moutons", 8));
         this.aConfigMap.put("Wolf", this.createJTextField("Nombre de loups", 2));
-        String[] options = {"Repoduction","Nourriture","Aléatoire"};
+        String[] options = {"Repoduction","Nourriture","Aléatoire","Repr+Nour"};
         this.aConfigMap.put("Deplacement", this.createJComboBox(options, "Prioritée de déplacement"));
         String[] options2 = {"Plus de loups","Plus de moutons","Plus de loups ou de moutons","Plus de loups et de moutons"};
         this.aConfigMap.put("Stop", this.createJComboBox(options2, "Condition d'arrêt"));

@@ -181,6 +181,7 @@ public class DataHandler extends JComponent
         {
             case 0:return "Reproduction";
             case 1: return "Nourriture";
+            case 3: return "Repro + Nourriture";
             default:return "Aleatoire";
         }
     }

@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Predicate;
+
 /*****************/
 public abstract class Animal
 {
@@ -54,10 +56,14 @@ public abstract class Animal
     {
         switch(dep)
         {
-            case 0:return this.reproDep(pC, pA, pG);
+            case 0:
+            case 3:Point vP = this.reproDep(pC, pA, pG);
+                    if(vP!=null)return vP;
+                    else if(dep==3)
+                        return this.feedDep(pC, pA, pG);break;
             case 1:return this.feedDep(pC, pA, pG);
-            default:return pC.get((new Random()).nextInt(pC.size()));
         }
+        return pC.get((new Random()).nextInt(pC.size()));
     }
     /*****************/
     public int getDistance(Point vP1, Point vP2)
@@ -69,41 +75,44 @@ public abstract class Animal
     /*****************/
     public  abstract Point feedDep(ArrayList<Point> pC, Animal[][] pA,boolean[][] pG);
     /*****************/
-    private Point reproDep(ArrayList<Point> pC, Animal[][] pA,boolean[][] pG)
+    private Point reproDep(ArrayList<Point> pC, Animal[][] pA, boolean[][] pG) {
+        if (this.aTimeBeforeProcreate <= 0)
+            return findBestPoint(pC, pA, pG, vA -> (this.canReproduceWith(vA) || vA.canReproduceWith(this)));
+        return null;
+    }
+    /*****************/
+    public Point findBestPoint(ArrayList<Point> pC, Animal[][] pA, boolean[][] pG, Predicate<Animal> pCheck)
     {
-        if(this.aTimeBeforeProcreate<=0)
-        {
-            int vShortestDistance = -1;
-            Point vShortestCompatibleAnimal = null;
-            for(int vRow = 0; vRow < pA[0].length; vRow++)
-                for(int vClmn = 0; vClmn < pA.length; vClmn++)
-                {
-                    Animal vA = pA[vClmn][vRow];
-                    if(vA==null)continue;
-                    Point vP = new Point(vClmn,vRow);
-                    int d = this.getDistance(pC.get(0),vP);
-                    if( this.canReproduceWith(vA) && (vShortestDistance==-1 || d< vShortestDistance))
-                    {
-                        vShortestDistance = d;
-                        vShortestCompatibleAnimal = vP;
-                    }
-                }
-            if(vShortestDistance!=-1)
+        int vShortestDistance = -1;
+        Point vShortestCompatibleAnimal = null;
+        for (int vRow = 0; vRow < pA[0].length; vRow++)
+            for (int vClmn = 0; vClmn < pA.length; vClmn++)
             {
-                Point vBest = pC.get(0);
-                vShortestDistance=-1;
-                for(Point point:pC)
-                {
-                    int distance = this.getDistance(point,vShortestCompatibleAnimal);
-                    if(vShortestDistance==-1 || distance< vShortestDistance)
-                    {
-                        vShortestDistance = distance;
-                        vBest = point;
-                    }
+                Animal vA = pA[vClmn][vRow];
+                if (vA == null)
+                    continue;
+                Point vP = new Point(vClmn, vRow);
+                int d = this.getDistance(pC.get(0), vP);
+                if (pCheck.test(vA) && (vShortestDistance == -1 || d < vShortestDistance)) {
+                    vShortestDistance = d;
+                    vShortestCompatibleAnimal = vP;
                 }
-                return vBest;
             }
+        if (vShortestDistance != -1) {
+            Point vBest = pC.get(0);
+            vShortestDistance = -1;
+            for (Point point : pC) {
+                int distance = this.getDistance(point, vShortestCompatibleAnimal);
+                if (vShortestDistance == -1 || distance < vShortestDistance) {
+                    vShortestDistance = distance;
+                    vBest = point;
+                }
+            }
+            return vBest;
         }
         return pC.get((new Random()).nextInt(pC.size()));
     }
+
+
+
 }

@@ -36,38 +36,8 @@ public class Wolf extends Animal
     /*****************/
     @Override public boolean grassInteract(final boolean pGrass){return pGrass;}
     /*****************/
-    @Override public Point feedDep(ArrayList<Point> pC, Animal[][] pA,boolean[][] pG)
-    {
-        int vShortestDistance = -1;
-        Point vShortestCompatibleAnimal = null;
-        for(int vRow = 0; vRow < pA[0].length; vRow++)
-            for(int vClmn = 0; vClmn < pA.length; vClmn++)
-            {
-                Animal vA = pA[vClmn][vRow];
-                if(vA==null)continue;
-                Point vP = new Point(vClmn,vRow);
-                int d = this.getDistance(pC.get(0),vP);
-                if( vA.getSpecies().equals("Sheep") && (vShortestDistance==-1 || d< vShortestDistance))
-                {
-                    vShortestDistance = d;
-                    vShortestCompatibleAnimal = vP;
-                }
-            }
-        if(vShortestDistance!=-1)
-        {
-            Point vBest = pC.get(0);
-            vShortestDistance=-1;
-            for(Point point:pC)
-            {
-                int distance = this.getDistance(point,vShortestCompatibleAnimal);
-                if(vShortestDistance==-1 || distance< vShortestDistance)
-                {
-                    vShortestDistance = distance;
-                    vBest = point;
-                }
-            }
-            return vBest;
-        }
-        return pC.get((new Random()).nextInt(pC.size()));
+    @Override
+    public Point feedDep(ArrayList<Point> pC, Animal[][] pA, boolean[][] pG) {
+        return findBestPoint(pC, pA, pG, vA -> vA.getSpecies().equals("Sheep"));
     }
 }
