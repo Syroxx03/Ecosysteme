@@ -55,11 +55,21 @@ public class Universe
     /*****************/
     private void testUniverseDead()
     {
+        boolean wolf = false, sheep = false;
         for(int vRow = 0; vRow < aP.row; vRow++)
             for(int vClmn = 0; vClmn < aP.clmn; vClmn++)
                 if(this.aAnimals[vClmn][vRow] != null)
-                    return;
-        this.aIsDead = true;
+                    if (this.aAnimals[vClmn][vRow].getSpecies().equals("Sheep"))
+                        sheep = true;
+                    else if(this.aAnimals[vClmn][vRow].getSpecies().equals("Wolf"))
+                        wolf = true;
+        switch(this.aP.stop)
+        {
+            case 0:this.aIsDead  = !wolf;break;
+            case 1: this.aIsDead =  !sheep;break;
+            case 2:this.aIsDead = !wolf || !sheep;break;
+            case 3:this.aIsDead = !wolf && !sheep;break;
+        }
     }
     /*****************/
     private void updateAnimals()
@@ -84,7 +94,7 @@ public class Universe
                         if(vAnimals[vPoint.x][vPoint.y] == null && this.aAnimals[vPoint.x][vPoint.y] == null)
                             vEmptyNeighboringCells.add(vPoint);
                     vEmptyNeighboringCells.add(new Point(vClmn,vRow));
-                    Point vPoint = vEmptyNeighboringCells.get((new Random()).nextInt(vEmptyNeighboringCells.size()));
+                    Point vPoint = vAnimal.getBestCell(this.aP.dep,vEmptyNeighboringCells,this.aAnimals,this.aGrass);
                     vAnimals[vPoint.x][vPoint.y] = vAnimal;
                 }
             }

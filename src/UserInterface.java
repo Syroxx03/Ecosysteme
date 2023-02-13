@@ -1,13 +1,7 @@
+import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.event.ActionListener;
-import javax.swing.WindowConstants;
 import java.awt.event.ActionEvent;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import java.util.HashMap;
 import java.awt.Color;
@@ -23,7 +17,8 @@ public class UserInterface extends JFrame implements ActionListener
     /*****************/
     public UserInterface()
     {
-        this.aDataHandler = new DataHandler();
+        String[] options = {"Nombre de cases", "Nombre de moutons","Nombre de loups","Deplacement","Condition d'arrêt"};
+        this.aDataHandler = new DataHandler(this.createJComboBox( options,"Paramètre variable"));
         this.setFrame();
         this.aAuto = false;
         this.aUniCanvas = new UniverseCanvas();
@@ -46,10 +41,14 @@ public class UserInterface extends JFrame implements ActionListener
     /*****************/
     private void setConfigMap()
     {
-        this.aConfigMap.put("Column", this.createJTextField("Nombre de colonnes (<=250)", 10));
-        this.aConfigMap.put("Row", this.createJTextField("Nombre de lignes (<=250)", 10));
+        this.aConfigMap.put("Column", this.createJTextField("Nombre de colonnes ", 10));
+        this.aConfigMap.put("Row", this.createJTextField("Nombre de lignes ", 10));
         this.aConfigMap.put("Sheep", this.createJTextField("Nombre de moutons", 8));
         this.aConfigMap.put("Wolf", this.createJTextField("Nombre de loups", 2));
+        String[] options = {"Repoduction","Nourriture","Aléatoire"};
+        this.aConfigMap.put("Deplacement", this.createJComboBox(options, "Prioritée de déplacement"));
+        String[] options2 = {"Plus de loups","Plus de moutons","Plus de loups ou de moutons","Plus de loups et de moutons"};
+        this.aConfigMap.put("Stop", this.createJComboBox(options2, "Condition d'arrêt"));
     }
     /*****************/
     private void setGameMap()
@@ -70,7 +69,7 @@ public class UserInterface extends JFrame implements ActionListener
     /*****************/
     private JTextField createJTextField(String pTitle, int pValue)
     {
-        JTextField vTF = new JTextField("" + pValue, 15);
+        JTextField vTF = new JTextField("" + pValue, 10);
         TitledBorder vTB = BorderFactory.createTitledBorder(pTitle);
         vTF.setBorder(new CompoundBorder(vTB, vTF.getBorder()));
         return vTF;
@@ -83,6 +82,15 @@ public class UserInterface extends JFrame implements ActionListener
         return vB;
     }
     /*****************/
+    private JComboBox<String> createJComboBox(String[] options,String pTitle)
+    {
+        JComboBox<String> vJCB = new JComboBox<>(options);
+        TitledBorder b = BorderFactory.createTitledBorder(pTitle);
+        vJCB.setBorder(new CompoundBorder(b,  vJCB.getBorder()));
+        vJCB.setSelectedIndex(0);
+        return vJCB;
+    }
+    /*****************/
     private boolean createUniverse()
     {
         try
@@ -91,9 +99,11 @@ public class UserInterface extends JFrame implements ActionListener
             int vRow = Integer.parseInt(((JTextField) this.aConfigMap.get("Row")).getText());
             int vSheep = Integer.parseInt(((JTextField) this.aConfigMap.get("Sheep")).getText());
             int vWolf = Integer.parseInt(((JTextField) this.aConfigMap.get("Wolf")).getText());
+            int vDep = ((JComboBox<?>)this.aConfigMap.get("Deplacement")).getSelectedIndex();
+            int vStop = ((JComboBox<?>)this.aConfigMap.get("Stop")).getSelectedIndex();
             if(vClmn > 250 || vRow > 250 || vClmn*vRow < vSheep + vWolf)
                 return false;
-            this.aUniCanvas.setUniverse(new Universe(new Params(vClmn, vRow, vSheep, vWolf)));
+            this.aUniCanvas.setUniverse(new Universe(new Params(vClmn, vRow, vSheep, vWolf,vDep,vStop)));
             return true;
         }
         catch (Exception et) {return false;}

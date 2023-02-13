@@ -68,7 +68,7 @@ public class UniverseCanvas  extends JComponent
     /*****************/
     private void drawMinerals(Graphics g)
     {
-        g.setColor(Color.BLUE);
+        g.setColor(Color.YELLOW);
         for(int vRow = 0; vRow < this.aUni.getParams().row; vRow++)
             for (int vClmn = 0; vClmn < this.aUni.getParams().clmn; vClmn++)
                 if(this.aUni.hasMinerals(vClmn,vRow))

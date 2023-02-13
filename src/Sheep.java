@@ -1,8 +1,13 @@
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
 /*****************/
 public class Sheep extends Animal
 {
     public static int LifeTime = 50;
-    public static int ProcreationInterval = 6;
+    public static int ProcreationInterval = 5;
     public static int MeatMaxInterval = 6;
 
     /*****************/
@@ -31,5 +36,14 @@ public class Sheep extends Animal
         if(pGrass)
             this.aTimeBeforeStarving = MeatMaxInterval;
         return false;
+    }
+    /*****************/
+    @Override public Point feedDep(ArrayList<Point> pC, Animal[][] pA,boolean[][] pG)
+    {
+        Collections.shuffle(pC);
+        for(Point p:pC)
+            if(pG[p.x][p.y])
+                return p;
+        return pC.get((new Random()).nextInt(pC.size()));
     }
 }
