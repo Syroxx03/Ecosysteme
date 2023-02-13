@@ -15,7 +15,7 @@ public abstract class Animal
     public Animal()
     {
         this.aSpecies = this.getClass().getName();
-        this.aGender = (new Random().nextBoolean() ? "male" : "female");
+        this.aGender = (new Random().nextBoolean() ? "Male" : "Female");
         this.aProperties = new ArrayList<String>();
     }
     /*****************/
@@ -30,7 +30,7 @@ public abstract class Animal
     /*****************/
     public boolean canReproduceWith(final Animal pAnimal)
     {
-        return (this.aGender.equals("male") && pAnimal.getGender().equals("female")
+        return (this.aGender.equals("Male") && pAnimal.getGender().equals("Female")
             && this.aSpecies.equals(pAnimal.getSpecies())
             && this.getTBProcreate() <= 0 && pAnimal.getTBProcreate() <= 0);
     }

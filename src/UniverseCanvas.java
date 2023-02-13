@@ -85,6 +85,8 @@ public class UniverseCanvas  extends JComponent
                 {
                     g.setColor(vAnimal.getSpecies().equals("Wolf")?Color.BLACK:Color.WHITE);
                     g.fillOval(aO.x + vClmn * aCaseSize, aO.y + vRow * aCaseSize , aCaseSize-1, aCaseSize-1);
+                    g.setColor(vAnimal.getGender().equals("Male")?Color.BLUE:Color.RED);
+                    g.drawOval(aO.x + vClmn * aCaseSize, aO.y + vRow * aCaseSize , aCaseSize-1, aCaseSize-1);
                 }
             }
     }

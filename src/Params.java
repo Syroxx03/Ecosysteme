@@ -14,7 +14,7 @@ public class Params
     @Override public boolean equals(Object pO)
     {
         if(pO instanceof Params pP) {
-            return (pP.clmn == clmn && pP.row == row && pP.sheep == sheep && pP.wolf == wolf);
+            return (pP.clmn*pP.row == clmn*row && pP.sheep == sheep && pP.wolf == wolf);
         }
         return false;
     }

@@ -1,9 +1,16 @@
-import javax.swing.*;
 import javax.swing.border.CompoundBorder;
-import java.awt.*;
 import java.awt.event.ActionListener;
+import javax.swing.WindowConstants;
 import java.awt.event.ActionEvent;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 import java.util.HashMap;
+import java.awt.Color;
 /*****************/
 public class UserInterface extends JFrame implements ActionListener
 {
@@ -28,12 +35,12 @@ public class UserInterface extends JFrame implements ActionListener
     }
     /*****************/
     public boolean auto() { return this.aAuto;}
+    public UniverseCanvas getUniCanvas(){return this.aUniCanvas;}
     /*****************/
     private void setFrame()
     {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setBounds(100, 100, 1100, 700);
-        this.setBackground(Color.white);
         this.setVisible(true);
     }
     /*****************/
@@ -64,7 +71,8 @@ public class UserInterface extends JFrame implements ActionListener
     private JTextField createJTextField(String pTitle, int pValue)
     {
         JTextField vTF = new JTextField("" + pValue, 15);
-        vTF.setBorder(new CompoundBorder(BorderFactory.createTitledBorder(pTitle), vTF.getBorder()));
+        TitledBorder vTB = BorderFactory.createTitledBorder(pTitle);
+        vTF.setBorder(new CompoundBorder(vTB, vTF.getBorder()));
         return vTF;
     }
     /*****************/
@@ -94,6 +102,7 @@ public class UserInterface extends JFrame implements ActionListener
     private void addComponents()
     {
         JPanel vPanel = new JPanel();
+        vPanel.setBackground(Color.WHITE);
         for (JComponent c : this.aConfigMap.values())
             vPanel.add(c);
         vPanel.add(this.createJButton("Valider   les paramètres"));

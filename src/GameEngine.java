@@ -19,7 +19,7 @@ public class GameEngine
         (new Thread(() -> {
             while(true)
             {
-                this.aUI.repaint();
+                this.aUI.getUniCanvas().repaint();
                 try{Thread.sleep(1000/60);}
                 catch(InterruptedException e){return;}
             }

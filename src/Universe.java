@@ -1,6 +1,6 @@
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.awt.Point;
 /*****************/
 public class Universe
 {
@@ -43,12 +43,12 @@ public class Universe
         if(!this.aIsDead)
         {
             this.aRound++;
+            this.addNews();
             this.moveAnimals();
             this.makeInteract();
             this.updateAnimals();
             this.updateGrass();
             this.removeDead();
-            this.addNews();
             testUniverseDead();
         }
     }
