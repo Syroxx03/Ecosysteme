@@ -1,3 +1,9 @@
+package universe;
+
+import universe.entities.Animal;
+import universe.entities.Sheep;
+import universe.entities.Wolf;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Point;
@@ -59,9 +65,9 @@ public class Universe
         for(int vRow = 0; vRow < aP.row; vRow++)
             for(int vClmn = 0; vClmn < aP.clmn; vClmn++)
                 if(this.aAnimals[vClmn][vRow] != null)
-                    if (this.aAnimals[vClmn][vRow].getSpecies().equals("Sheep"))
+                    if (this.aAnimals[vClmn][vRow].getSpecies().equals("universe.entities.Sheep"))
                         sheep = true;
-                    else if(this.aAnimals[vClmn][vRow].getSpecies().equals("Wolf"))
+                    else if(this.aAnimals[vClmn][vRow].getSpecies().equals("universe.entities.Wolf"))
                         wolf = true;
         switch(this.aP.stop)
         {

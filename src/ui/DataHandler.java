@@ -1,3 +1,7 @@
+package ui;
+
+import universe.Params;
+
 import java.awt.geom.Rectangle2D;
 import javax.swing.JComponent;
 import javax.swing.JComboBox;

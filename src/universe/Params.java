@@ -1,3 +1,5 @@
+package universe;
+
 /*****************/
 public class Params
 {

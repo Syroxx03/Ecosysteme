@@ -1,6 +1,7 @@
+package universe.entities;
+
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Random;
 
 /*****************/
 public class Wolf extends Animal
@@ -21,7 +22,7 @@ public class Wolf extends Animal
     /*****************/
     @Override public void interact(Animal pAnimal)
     {
-        if(pAnimal.getSpecies().equals("Sheep"))
+        if(pAnimal.getSpecies().equals("universe.entities.Sheep"))
         {
             pAnimal.addProperty("dead");
             this.aTimeBeforeStarving =  MeatMaxInterval;
@@ -38,6 +39,6 @@ public class Wolf extends Animal
     /*****************/
     @Override
     public Point feedDep(ArrayList<Point> pC, Animal[][] pA, boolean[][] pG) {
-        return findBestPoint(pC, pA, pG, vA -> vA.getSpecies().equals("Sheep"));
+        return findBestPoint(pC, pA, pG, vA -> vA.getSpecies().equals("universe.entities.Sheep"));
     }
 }

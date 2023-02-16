@@ -141,7 +141,7 @@
       <body>...</body>
     </ownedComment>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjH3blEe21DKtLdqIhMA" name="UserInterface"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjH3blEe21DKtLdqIhMA" name="ui.UserInterface"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_IBkjIHblEe21DKtLdqIhMA" name="GameEngine">
     <ownedAttribute xmi:id="_IBkjIXblEe21DKtLdqIhMA" name="userInterface" visibility="public" type="_IBkjH3blEe21DKtLdqIhMA" isUnique="false" aggregation="shared" association="_IBkjJXblEe21DKtLdqIhMA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IBkjInblEe21DKtLdqIhMA"/>
@@ -158,7 +158,7 @@
   <packagedElement xmi:type="uml:Association" xmi:id="_IBkjKHblEe21DKtLdqIhMA" memberEnd="_IBkjI3blEe21DKtLdqIhMA _IBkjKXblEe21DKtLdqIhMA">
     <ownedEnd xmi:id="_IBkjKXblEe21DKtLdqIhMA" visibility="public" type="_IBkjIHblEe21DKtLdqIhMA" isUnique="false" association="_IBkjKHblEe21DKtLdqIhMA"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjKnblEe21DKtLdqIhMA" name="Universe">
+  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjKnblEe21DKtLdqIhMA" name="universe.Universe">
     <ownedAttribute xmi:id="_IBkjK3blEe21DKtLdqIhMA" name="animal" visibility="public" type="_IBkjMHblEe21DKtLdqIhMA" isUnique="false" aggregation="shared" association="_IBkjLXblEe21DKtLdqIhMA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IBkjLHblEe21DKtLdqIhMA"/>
     </ownedAttribute>
@@ -168,11 +168,11 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IBkjL3blEe21DKtLdqIhMA"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjMHblEe21DKtLdqIhMA" name="Animal"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjMXblEe21DKtLdqIhMA" name="Sheep">
+  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjMHblEe21DKtLdqIhMA" name="universe.entities.Animal"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjMXblEe21DKtLdqIhMA" name="universe.entities.Sheep">
     <generalization xmi:id="_IBkjMnblEe21DKtLdqIhMA" general="_IBkjMHblEe21DKtLdqIhMA"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjM3blEe21DKtLdqIhMA" name="Wolf">
+  <packagedElement xmi:type="uml:Class" xmi:id="_IBkjM3blEe21DKtLdqIhMA" name="universe.entities.Wolf">
     <generalization xmi:id="_IBkjNHblEe21DKtLdqIhMA" general="_IBkjMHblEe21DKtLdqIhMA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_IBkjNXblEe21DKtLdqIhMA" name="ConfigurationInterface"/>
@@ -205,10 +205,10 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Interaction" xmi:id="_IBkjQ3blEe21DKtLdqIhMA" name="Interaction">
     <nestedClassifier xmi:type="uml:Collaboration" xmi:id="_IBkjRHblEe21DKtLdqIhMA" name="locals"/>
-    <lifeline xmi:id="_IBkjRXblEe21DKtLdqIhMA" name="Animal" coveredBy="_IBkjS3blEe21DKtLdqIhMA _IBkjVXblEe21DKtLdqIhMA _IBkjW3blEe21DKtLdqIhMA"/>
-    <lifeline xmi:id="_IBkjRnblEe21DKtLdqIhMA" name="Animal" coveredBy="_IBkjSXblEe21DKtLdqIhMA _IBkjTHblEe21DKtLdqIhMA _IBkjTXblEe21DKtLdqIhMA _IBkjVHblEe21DKtLdqIhMA _IBkjVXblEe21DKtLdqIhMA _IBkjWXblEe21DKtLdqIhMA _IBkjWnblEe21DKtLdqIhMA _IBkjW3blEe21DKtLdqIhMA _IBkjYHblEe21DKtLdqIhMA _IBkjYXblEe21DKtLdqIhMA _IBkjY3blEe21DKtLdqIhMA"/>
+    <lifeline xmi:id="_IBkjRXblEe21DKtLdqIhMA" name="universe.entities.Animal" coveredBy="_IBkjS3blEe21DKtLdqIhMA _IBkjVXblEe21DKtLdqIhMA _IBkjW3blEe21DKtLdqIhMA"/>
+    <lifeline xmi:id="_IBkjRnblEe21DKtLdqIhMA" name="universe.entities.Animal" coveredBy="_IBkjSXblEe21DKtLdqIhMA _IBkjTHblEe21DKtLdqIhMA _IBkjTXblEe21DKtLdqIhMA _IBkjVHblEe21DKtLdqIhMA _IBkjVXblEe21DKtLdqIhMA _IBkjWXblEe21DKtLdqIhMA _IBkjWnblEe21DKtLdqIhMA _IBkjW3blEe21DKtLdqIhMA _IBkjYHblEe21DKtLdqIhMA _IBkjYXblEe21DKtLdqIhMA _IBkjY3blEe21DKtLdqIhMA"/>
     <lifeline xmi:id="_IBkjR3blEe21DKtLdqIhMA" name="Environement" coveredBy="_IBkjTnblEe21DKtLdqIhMA"/>
-    <lifeline xmi:id="_IBkjSHblEe21DKtLdqIhMA" name="Animal" coveredBy="_IBkjTnblEe21DKtLdqIhMA"/>
+    <lifeline xmi:id="_IBkjSHblEe21DKtLdqIhMA" name="universe.entities.Animal" coveredBy="_IBkjTnblEe21DKtLdqIhMA"/>
     <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_IBkjSXblEe21DKtLdqIhMA" covered="_IBkjRnblEe21DKtLdqIhMA" start="_IBkjWXblEe21DKtLdqIhMA" finish="_IBkjWnblEe21DKtLdqIhMA">
       <ownedComment xmi:id="_IBkjSnblEe21DKtLdqIhMA">
         <body>generate a baby</body>
@@ -251,7 +251,7 @@
         <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_IBkjYHblEe21DKtLdqIhMA" covered="_IBkjRnblEe21DKtLdqIhMA"/>
         <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_IBkjYXblEe21DKtLdqIhMA" covered="_IBkjRnblEe21DKtLdqIhMA" start="_IBkjYHblEe21DKtLdqIhMA" finish="_IBkjY3blEe21DKtLdqIhMA">
           <ownedComment xmi:id="_IBkjYnblEe21DKtLdqIhMA">
-            <body>Sheep eaten </body>
+            <body>universe.entities.Sheep eaten </body>
           </ownedComment>
         </fragment>
         <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_IBkjY3blEe21DKtLdqIhMA" covered="_IBkjRnblEe21DKtLdqIhMA"/>

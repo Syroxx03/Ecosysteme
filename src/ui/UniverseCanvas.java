@@ -1,3 +1,9 @@
+package ui;
+
+import universe.Params;
+import universe.Universe;
+import universe.entities.Animal;
+
 import javax.swing.JComponent;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -83,7 +89,7 @@ public class UniverseCanvas  extends JComponent
                 Animal vAnimal = this.aUni.getAnimal(vClmn,vRow);
                 if(vAnimal != null)
                 {
-                    g.setColor(vAnimal.getSpecies().equals("Wolf")?Color.BLACK:Color.WHITE);
+                    g.setColor(vAnimal.getSpecies().equals("universe.entities.Wolf")?Color.BLACK:Color.WHITE);
                     g.fillOval(aO.x + vClmn * aCaseSize, aO.y + vRow * aCaseSize , aCaseSize-1, aCaseSize-1);
                     g.setColor(vAnimal.getGender().equals("Male")?Color.BLUE:Color.RED);
                     g.drawOval(aO.x + vClmn * aCaseSize, aO.y + vRow * aCaseSize , aCaseSize-1, aCaseSize-1);

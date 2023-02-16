@@ -1,3 +1,8 @@
+package ui;
+
+import universe.Params;
+import universe.Universe;
+
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionListener;
@@ -50,8 +55,8 @@ public class UserInterface extends JFrame implements ActionListener
     {
         this.aConfigMap.put("Column", this.createJTextField("Nombre de colonnes ", 10));
         this.aConfigMap.put("Row", this.createJTextField("Nombre de lignes ", 10));
-        this.aConfigMap.put("Sheep", this.createJTextField("Nombre de moutons", 8));
-        this.aConfigMap.put("Wolf", this.createJTextField("Nombre de loups", 2));
+        this.aConfigMap.put("universe.entities.Sheep", this.createJTextField("Nombre de moutons", 8));
+        this.aConfigMap.put("universe.entities.Wolf", this.createJTextField("Nombre de loups", 2));
         String[] options = {"Repoduction","Nourriture","Aléatoire","Repr+Nour"};
         this.aConfigMap.put("Deplacement", this.createJComboBox(options, "Prioritée de déplacement"));
         String[] options2 = {"Plus de loups","Plus de moutons","Plus de loups ou de moutons","Plus de loups et de moutons"};
@@ -104,8 +109,8 @@ public class UserInterface extends JFrame implements ActionListener
         {
             int vClmn = Integer.parseInt(((JTextField) this.aConfigMap.get("Column")).getText());
             int vRow = Integer.parseInt(((JTextField) this.aConfigMap.get("Row")).getText());
-            int vSheep = Integer.parseInt(((JTextField) this.aConfigMap.get("Sheep")).getText());
-            int vWolf = Integer.parseInt(((JTextField) this.aConfigMap.get("Wolf")).getText());
+            int vSheep = Integer.parseInt(((JTextField) this.aConfigMap.get("universe.entities.Sheep")).getText());
+            int vWolf = Integer.parseInt(((JTextField) this.aConfigMap.get("universe.entities.Wolf")).getText());
             int vDep = ((JComboBox<?>)this.aConfigMap.get("Deplacement")).getSelectedIndex();
             int vStop = ((JComboBox<?>)this.aConfigMap.get("Stop")).getSelectedIndex();
             if(vClmn > 250 || vRow > 250 || vClmn*vRow < vSheep + vWolf)
