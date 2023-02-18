@@ -127,7 +127,7 @@ public class UserInterface extends JFrame implements ActionListener
         vPanel.setBackground(Color.WHITE);
         for (JComponent c : this.aConfigMap.values())
             vPanel.add(c);
-        vPanel.add(this.createJButton("Valider   les paramètres"));
+        vPanel.add(this.createJButton("Valider les paramètres"));
         vPanel.add(this.aUniCanvas);
         vPanel.add(this.aDataHandler);
         for (JComponent c : this.aGameMap.values())
