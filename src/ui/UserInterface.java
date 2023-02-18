@@ -152,7 +152,7 @@ public class UserInterface extends JFrame implements ActionListener
         String vText = vB.getText();
         switch (vText)
         {
-            case "Valider   les paramètres" -> handleValidateParams(vB);
+            case "Valider les paramètres" -> handleValidateParams(vB);
             case "Modifier les paramètres" -> handleModifyParams(vB);
             case "Tour suivant" -> nextRound();
             case "Auto " -> handleAuto();
@@ -173,7 +173,7 @@ public class UserInterface extends JFrame implements ActionListener
     private void handleModifyParams(JButton button)
     {
         ((JButton) this.aGameMap.get("Auto ")).setText("Auto ");
-        button.setText("Valider   les paramètres");
+        button.setText("Valider les paramètres");
         this.aUniCanvas.setUniverse(null);
         this.setConfigMode(true);
         this.aAuto = false;
